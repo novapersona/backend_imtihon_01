@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilm Chashmasi - Bilimlar Buloqi va Arab Tili Platformasi</title>
+    <meta name="description" content="Ilm Chashmasi - Dunyoqarashni kengaytiruvchi, arab tilini o'rgatuvchi va ilm ulashuvchi zamonaviy interaktiv platforma.">
+    <!-- Google Fonts -->
+     <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUIh7Gu4wA8cKUT1Eu2yH3ECy3RzN5cwzj7G2beBxUJg&s">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Toast Notifications Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- ============ CLEAN, ORGANIZED NAVBAR ============ -->
+        <nav class="navbar" id="navbar">
+            <div class="container nav-container">
+                <!-- Brand Logo -->
+                <a href="#home" class="logo" id="logo-link">
+                    <span class="logo-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="logo-text">Ilm Chashmasi</span>
+                </a>
+
+                <!-- Core Navigation Links (Text only, clean horizontal layout) -->
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" class="nav-item active">Bosh sahifa</a></li>
+                    <li><a href="#articles" class="nav-item">Maqolalar</a></li>
+                    <li><a href="#flashcards" class="nav-item">Lug'at</a></li>
+                    <li><a href="#tests" class="nav-item">Testlar</a></li>
+                    <li><a href="#shop" class="nav-item">Do'kon</a></li>
+                    <li><a href="#leaderboard" class="nav-item">Reyting</a></li>
+                    <li><a href="#about" class="nav-item">Haqimizda</a></li>
+                    <li><a href="#resources" class="nav-item">Resurslar</a></li>
+                </ul>
+
+                <!-- Action Controls (Theme, Sound, Auth/Profile) -->
+                <div class="nav-actions-group">
+                    <button id="theme-toggle-btn" class="nav-icon-btn" title="Tun / Kun rejimini almashtirish" aria-label="Mavzu">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="sound-toggle-btn" class="nav-icon-btn" title="Ovoz effektlari" aria-label="Ovoz">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+
+                    <!-- Guest Authentication Actions -->
+                    <div id="nav-guest-zone" class="nav-auth-box">
+                        <button id="nav-login-btn" class="btn btn-outline-sm">Kirish</button>
+                        <button id="nav-register-btn" class="btn btn-primary-sm">Ro'yxat</button>
+                    </div>
+
+                    <!-- Logged-in User Actions -->
+                    <div id="nav-user-zone" class="nav-auth-box" style="display:none;">
+                        <button id="nav-fav-btn" class="nav-icon-btn" title="Saralangan maqolalar">
+                            <i class="fas fa-heart"></i>
+                            <span id="nav-fav-count" class="badge-dot-num">0</span>
+                        </button>
+                        <button id="nav-orders-btn" class="nav-icon-btn" title="Mening buyurtmalarim">
+                            <i class="fas fa-shopping-bag"></i>
+                        </button>
+                        <span id="nav-coin-badge" class="coin-badge" title="Sizning coin balansingiz">🪙 0</span>
+                        <button id="nav-profile-btn" class="btn btn-outline-sm" title="Mening profilim">
+                            <i class="fas fa-user-circle"></i> <span id="nav-username-display">Profil</span>
+                        </button>
+                        <button id="admin-login-btn" class="btn btn-admin-chip btn-sm" style="display:none;">Admin</button>
+                        <button id="nav-logout-btn" class="nav-icon-btn nav-logout-btn" title="Tizimdan chiqish">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Menu Hamburger -->
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menyu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>  
+        </nav>
+
+        <!-- ============ MAIN CONTENT ============ -->
+        <main id="main-content">
+            <!-- ============ HERO SECTION ============ -->
+            <section id="home" class="hero">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-text">
+                            <div class="hero-badge animate-up">
+                                <span class="badge-dot"></span> Bilimlar va Hikmatlar Buloqi
+                            </div>
+                            <h1 class="animate-up delay-1">Bilimlar Buloqi — <span class="highlight">Ilm Chashmasi</span></h1>
+                            <p class="animate-up delay-2">
+                                Dunyoqarashingizni bitmas-tuganmas ma'rifat bilan boyiting. Arab tili so'z boyligini oshiring, testlar topshirib coin yig'ing va qimmatli sovg'alarga ega bo'ling!
+                            </p>
+                            <div class="hero-actions animate-up delay-3">
+                                <a href="#articles" class="btn btn-primary btn-lg"><i class="fas fa-book-reader"></i> O'qishni boshlash</a>
+                                <a href="#tests" class="btn btn-secondary-outline btn-lg"><i class="fas fa-brain"></i> Testlar</a>
+                                <a href="#flashcards" class="btn btn-secondary-outline btn-lg"><i class="fas fa-clone"></i> So'z kartalari</a>
+                            </div>
+                        </div>
+
+                        <div class="hero-card-col animate-fade-in">
+                            <div class="hero-visual-card">
+                                <div class="visual-card-header">
+                                    <span class="visual-badge"><i class="fas fa-sparkles"></i> Kun taklifi</span>
+                                    <span class="visual-time"><i class="far fa-clock"></i> Bugun</span>
+                                </div>
+                                <div class="visual-arabic" dir="rtl">طَلَبُ العِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ</div>
+                                <p class="visual-translit">«Talabul 'ilmi fariydatun 'ala kulli muslim»</p>
+                                <p class="visual-meaning">«Ilm izlash har bir musulmon uchun farzdir.»</p>
+                                <div class="visual-card-footer">
+                                    <button class="btn btn-sm btn-primary-outline" onclick="speakText('طَلَبُ العِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ')">
+                                        <i class="fas fa-volume-up"></i> Tinglash
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary-outline" onclick="copyWisdom()">
+                                        <i class="fas fa-copy"></i> Nusxalash
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ STATS SECTION (Clean separated row) ============ -->
+            <section class="stats-section">
+                <div class="container">
+                    <div class="stats-strip">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-book"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="stats-articles-count">50+</div>
+                                <div class="stat-label">Foydali Maqolalar</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-language"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="stats-words-count">1,200+</div>
+                                <div class="stat-label">Arabcha So'zlar</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="stats-users-count">850+</div>
+                                <div class="stat-label">Faol O'quvchilar</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="stats-coins-count">25,000+</div>
+                                <div class="stat-label">Berilgan Coinlar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ DAILY WISDOM BANNER ============ -->
+            <section class="section-sm">
+                <div class="container">
+                    <div class="wisdom-banner">
+                        <div class="wisdom-icon-box">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <div class="wisdom-content">
+                            <span class="wisdom-tag">Bugungi Kun Hikmati</span>
+                            <h3 id="daily-wisdom-arabic" class="wisdom-arabic-text" dir="rtl">مَنْ جَدَّ وَجَدَ ، وَمَنْ زَرَعَ حَصَدَ</h3>
+                            <p id="daily-wisdom-uzbek" class="wisdom-uzbek-text">«Kim qattiq harakat qilsa — topadi, kim ekkan bo'lsa — o'radi.»</p>
+                        </div>
+                        <div class="wisdom-actions">
+                            <button class="btn btn-icon-round" onclick="speakDailyWisdom()" title="Arabcha talaffuzni eshitish">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                            <button class="btn btn-icon-round" onclick="refreshDailyWisdom()" title="Boshqa hikmat ko'rish">
+                                <i class="fas fa-random"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ ARTICLES SECTION ============ -->
+            <section id="articles" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-book-open"></i> Mutolaa</div>
+                        <h2>Ilmiy va Ma'rifiy Maqolalar</h2>
+                        <p>Dunyoqarashingizni boyituvchi sara maqolalar, tavsiyalar va qo'llanmalar</p>
+                    </div>
+
+                    <!-- Search and Filters Bar -->
+                    <div class="filter-controls-wrap">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="article-search-input" placeholder="Maqolalarni sarlavha yoki matn bo'yicha qidirish...">
+                            <button id="article-search-clear" class="btn-clear" style="display:none;" title="Tozalash"><i class="fas fa-times"></i></button>
+                        </div>
+
+                        <div class="filter-row">
+                            <div class="category-chips" id="article-category-filters">
+                                <button class="chip active" data-cat="all">Barchasi</button>
+                                <button class="chip" data-cat="Ilm-ma'rifat">Ilm-ma'rifat</button>
+                                <button class="chip" data-cat="Kitobxonlik">Kitobxonlik</button>
+                                <button class="chip" data-cat="Arab tili">Arab tili</button>
+                                <button class="chip" data-cat="Shaxsiy rivojlanish">Shaxsiy rivojlanish</button>
+                                <button class="chip" data-cat="Texnologiya">Texnologiya</button>
+                            </div>
+
+                            <div class="sort-box">
+                                <label for="article-sort-select"><i class="fas fa-sort-amount-down"></i> Saralash:</label>
+                                <select id="article-sort-select" class="custom-select">
+                                    <option value="newest">Eng yangi</option>
+                                    <option value="popular">Eng ko'p o'qilgan</option>
+                                    <option value="title">Alifbo bo'yicha</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Articles Grid -->
+                    <div id="articles-grid" class="articles-grid">
+                        <div class="loader">Maqolalar yuklanmoqda...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ FLASHCARDS (VOCABULARY TRAINER) ============ -->
+            <section id="flashcards" class="section section-light">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-clone"></i> Interaktiv Mashq</div>
+                        <h2><i class="fas fa-language" style="color:var(--primary);"></i> Arabcha So'z Kartochkalari (Flashcards)</h2>
+                        <p>Kartani aylantirib yangi so'zlarni xotirangizda muhrlang va talaffuzini tinglang</p>
+                    </div>
+
+                    <!-- Category selector for flashcards -->
+                    <div class="flashcard-category-tabs" id="flashcard-category-tabs">
+                        <button class="chip active" data-fc-cat="all">Barcha mavzular</button>
+                        <button class="chip" data-fc-cat="daily">Kundalik zaruriy</button>
+                        <button class="chip" data-fc-cat="nature">Tabiat</button>
+                        <button class="chip" data-fc-cat="family">Oila</button>
+                        <button class="chip" data-fc-cat="study">Ta'lim & Maktab</button>
+                    </div>
+
+                    <!-- 3D Flashcard Container -->
+                    <div class="flashcard-wrapper">
+                        <div class="flashcard-scene" id="flashcard-scene">
+                            <div class="flashcard" id="main-flashcard">
+                                <!-- FRONT -->
+                                <div class="flashcard-face flashcard-front">
+                                    <div class="fc-badge" id="fc-category-badge">Kundalik zaruriy</div>
+                                    <button class="fc-audio-btn" id="fc-audio-front-btn" title="Talaffuzni tinglash">
+                                        <i class="fas fa-volume-up"></i>
+                                    </button>
+                                    <div class="fc-arabic" id="fc-arabic-word" dir="rtl">كِتَابٌ</div>
+                                    <div class="fc-translit" id="fc-translit-text">[ kitaabun ]</div>
+                                    <div class="fc-hint"><i class="fas fa-sync-alt"></i> Tarjimasini ko'rish uchun bosing</div>
+                                </div>
+
+                                <!-- BACK -->
+                                <div class="flashcard-face flashcard-back">
+                                    <div class="fc-badge">O'zbekcha Ma'nosi</div>
+                                    <div class="fc-translation" id="fc-uzbek-word">Kitob</div>
+                                    <div class="fc-example" id="fc-example-sentence">
+                                        <span class="fc-example-ar" dir="rtl">قَرَأْتُ كِتَابًا مُفِيدًا</span>
+                                        <span class="fc-example-uz">«Men foydali kitob o'qidim»</span>
+                                    </div>
+                                    <div class="fc-hint"><i class="fas fa-undo"></i> Qaytarish uchun bosing</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flashcard Controls -->
+                        <div class="flashcard-controls">
+                            <button id="fc-prev-btn" class="btn btn-secondary-outline"><i class="fas fa-arrow-left"></i> Oldingisi</button>
+                            <button id="fc-flip-btn" class="btn btn-primary"><i class="fas fa-sync-alt"></i> Aylantirish</button>
+                            <button id="fc-next-btn" class="btn btn-secondary-outline">Keyingisi <i class="fas fa-arrow-right"></i></button>
+                        </div>
+
+                        <div class="flashcard-tracker">
+                            <span id="fc-counter">1 / 15</span>
+                            <div class="fc-progress-bar">
+                                <div id="fc-progress-fill" class="fc-progress-fill" style="width: 7%;"></div>
+                            </div>
+                            <div class="fc-action-tags">
+                                <button id="fc-learned-btn" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Yod oldim</button>
+                                <span class="fc-learned-count">Yodlangan: <strong id="fc-learned-num">0</strong> ta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ TESTS SECTION ============ -->
+            <section id="tests" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-puzzle-piece"></i> Sinov</div>
+                        <h2><i class="fas fa-brain" style="color:var(--primary);"></i> Arabcha–O'zbekcha Interaktiv Testlar</h2>
+                        <p>Bilimingizni sinang, har bir to'g'ri javob uchun 🪙 coin ishlang va sovg'alarga almashtiring!</p>
+                    </div>
+
+                    <!-- Filter for quizzes -->
+                    <div class="quiz-filter-row">
+                        <div class="category-chips" id="quiz-level-filters">
+                            <button class="chip active" data-quiz-filter="all">Barcha testlar</button>
+                            <button class="chip" data-quiz-filter="easy">Boshlang'ich</button>
+                            <button class="chip" data-quiz-filter="medium">O'rta daraja</button>
+                        </div>
+                        <div class="quiz-info-badge">
+                            <i class="fas fa-coins" style="color:#f59e0b;"></i> Har bir to'g'ri javob: <strong>+1 Coin</strong>
+                        </div>
+                    </div>
+
+                    <div id="tests-grid" class="tests-grid">
+                        <p class="empty-msg">Testlar yuklanmoqda...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ LEADERBOARD SECTION ============ -->
+            <section id="leaderboard" class="section section-light">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-crown"></i> Musobaqa</div>
+                        <h2><i class="fas fa-trophy" style="color:var(--secondary);"></i> Bilimdonlar Reytingi (Leaderboard)</h2>
+                        <p>Eng ko'p test topshirib, yuqori natijalarga erishgan talabalar peshqadami</p>
+                    </div>
+
+                    <!-- Top 3 Podium -->
+                    <div class="podium-wrap">
+                        <!-- 2nd Place -->
+                        <div class="podium-card podium-silver" id="podium-2">
+                            <div class="podium-crown"><i class="fas fa-medal"></i></div>
+                            <div class="podium-avatar">🥈</div>
+                            <div class="podium-name" id="podium-2-name">Madina</div>
+                            <div class="podium-coins" id="podium-2-coins">🪙 30 coin</div>
+                            <div class="podium-place">2-O'rin</div>
+                        </div>
+
+                        <!-- 1st Place -->
+                        <div class="podium-card podium-gold" id="podium-1">
+                            <div class="podium-crown"><i class="fas fa-crown"></i></div>
+                            <div class="podium-avatar">👑</div>
+                            <div class="podium-name" id="podium-1-name">Nodirbek</div>
+                            <div class="podium-coins" id="podium-1-coins">🪙 45 coin</div>
+                            <div class="podium-place">Chempion • 1-O'rin</div>
+                        </div>
+
+                        <!-- 3rd Place -->
+                        <div class="podium-card podium-bronze" id="podium-3">
+                            <div class="podium-crown"><i class="fas fa-award"></i></div>
+                            <div class="podium-avatar">🥉</div>
+                            <div class="podium-name" id="podium-3-name">Dilshod</div>
+                            <div class="podium-coins" id="podium-3-coins">🪙 22 coin</div>
+                            <div class="podium-place">3-O'rin</div>
+                        </div>
+                    </div>
+
+                    <!-- Full Leaderboard Table -->
+                    <div class="leaderboard-table-card">
+                        <div class="leaderboard-header-row">
+                            <span class="col-rank">O'rin</span>
+                            <span class="col-user">Foydalanuvchi</span>
+                            <span class="col-tests">Ishlangan Testlar</span>
+                            <span class="col-coins">Jami Coinlar</span>
+                            <span class="col-badge">Daraja</span>
+                        </div>
+                        <div id="leaderboard-rows" class="leaderboard-body">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ SHOP SECTION ============ -->
+            <section id="shop" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-gift"></i> Sovg'alar</div>
+                        <h2><i class="fas fa-store" style="color:var(--secondary);"></i> Ilm Do'koni — Sovg'alar Xazinasi</h2>
+                        <p>Yig'gan coinlaringiz evaziga qiziqarli kitoblar, aksessuarlar va sovg'alarni bepul xarid qiling!</p>
+                    </div>
+
+                    <div class="filter-controls-wrap">
+                        <div class="category-chips" id="shop-category-filters">
+                            <button class="chip active" data-shop-cat="all">Barcha mahsulotlar</button>
+                            <button class="chip" data-shop-cat="kitob">Kitoblar & Lug'atlar</button>
+                            <button class="chip" data-shop-cat="aksessuar">Aksessuarlar</button>
+                        </div>
+                        <div class="shop-balance-alert">
+                            Sizning balansingiz: <strong id="shop-user-balance">0 🪙</strong>
+                        </div>
+                    </div>
+
+                    <div id="shop-grid" class="articles-grid">
+                        <p class="empty-msg">Do'kon mahsulotlari yuklanmoqda...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ RESOURCES SECTION ============ -->
+            <section id="resources" class="section section-light">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-layer-group"></i> Foydali</div>
+                        <h2><i class="fas fa-graduation-cap" style="color:var(--primary);"></i> Foydali Manbalar va Qo'llanmalar</h2>
+                        <p>O'qish va til o'rganishda asqotadigan maxsus tanlangan metodik materiallar</p>
+                    </div>
+
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon-wrap" style="background:#e0f2fe;color:#0284c7;">
+                                <i class="fas fa-spell-check"></i>
+                            </div>
+                            <h3>Arab Alifbosi va Maxrojlar</h3>
+                            <p>28 ta arab harflarining talaffuzi, boshida, o'rtasida va oxirida yozilishi bo'yicha interaktiv jadval va audio ko'rsatmalar.</p>
+                            <button class="btn btn-primary-outline btn-block" onclick="openResourceModal('alphabet')">
+                                <i class="fas fa-eye"></i> Jadvalni ko'rish
+                            </button>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon-wrap" style="background:#fef3c7;color:#d97706;">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h3>Kitob Mutolaasi Madaniyati</h3>
+                            <p>Tez o'qish, o'qilgan ma'lumotlarni yodda saqlash va konspekt olish bo'yicha amaliy 7 ta usul to'plami.</p>
+                            <button class="btn btn-primary-outline btn-block" onclick="openResourceModal('reading')">
+                                <i class="fas fa-eye"></i> Qo'llanmani o'qish
+                            </button>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon-wrap" style="background:#dcfce7;color:#16a34a;">
+                                <i class="fas fa-headphones"></i>
+                            </div>
+                            <h3>Audio Lug'atlar To'plami</h3>
+                            <p>Kundalik hayotda eng ko'p ishlatiladigan 500 ta arabcha so'z va iboralarning to'liq ovozli ro'yxati.</p>
+                            <button class="btn btn-primary-outline btn-block" onclick="openResourceModal('audio')">
+                                <i class="fas fa-eye"></i> Ro'yxatni ochish
+                            </button>
+                        </div>
+
+                        <div class="resource-card">
+                            <div class="resource-icon-wrap" style="background:#f3e8ff;color:#9333ea;">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>Xotirani Charxlash Usullari</h3>
+                            <p>Ebbinghaus egri chizig'i va oraliqli takrorlash (Spaced Repetition) orqali so'zlarni umrbod eslab qolish texnikasi.</p>
+                            <button class="btn btn-primary-outline btn-block" onclick="openResourceModal('memory')">
+                                <i class="fas fa-eye"></i> Texnikani ko'rish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ ABOUT SECTION ============ -->
+            <section id="about" class="section">
+                <div class="container">
+                    <div class="about-content">
+                        <div class="about-image">
+                            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1000" alt="Ilm Chashmasi kutubxona">
+                            <div class="about-image-badge">
+                                <i class="fas fa-certificate"></i>
+                                <span>Zamonaviy Ta'lim Ekotizimi</span>
+                            </div>
+                        </div>
+                        <div class="about-text">
+                            <div class="section-badge"><i class="fas fa-landmark"></i> Missiyamiz</div>
+                            <h2>Ilm Chashmasi haqida</h2>
+                            <p class="lead-p">
+                                <strong>«Ilm Chashmasi»</strong> — bu yoshlar, talabalar va bilimga tashna insonlarni bir maqsad sari birlashtiruvchi zamonaviy ma'rifiy platforma.
+                            </p>
+                            <p>
+                                Bizning bosh maqsadimiz — sharq madaniyati, arab tili xazinasi va jahon ilm-fan yutuqlarini sodda, qiziqarli va zamonaviy raqamli uslubda har bir o'quvchiga yetkazishdir.
+                            </p>
+                            
+                            <div class="about-features-list">
+                                <div class="about-feat-item">
+                                    <div class="feat-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div>
+                                        <strong>Mutlaqo bepul bilim</strong>
+                                        <p>Har bir maqola, lug'at va testlar barcha uchun erkin va bepul.</p>
+                                    </div>
+                                </div>
+                                <div class="about-feat-item">
+                                    <div class="feat-icon"><i class="fas fa-gamepad"></i></div>
+                                    <div>
+                                        <strong>O'yinlashtirilgan ta'lim (Gamification)</strong>
+                                        <p>Testlar topshirib coin yig'ing va qiziqarli sovg'alarga almashtiring.</p>
+                                    </div>
+                                </div>
+                                <div class="about-feat-item">
+                                    <div class="feat-icon"><i class="fas fa-mobile-alt"></i></div>
+                                    <div>
+                                        <strong>Qulay va zamonaviy interfeys</strong>
+                                        <p>Har qanday telefon, planshet yoki kompyuterda mukammal ishlaydi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ FAQ SECTION ============ -->
+            <section id="faq" class="section section-light">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge"><i class="fas fa-question-circle"></i> Savol-Javob</div>
+                        <h2>Ko'p So'raladigan Savollar</h2>
+                        <p>Platformadan foydalanish, testlar va coinlar bo'yicha batafsil ma'lumotlar</p>
+                    </div>
+
+                    <div class="faq-accordion-wrap">
+                        <div class="faq-item active">
+                            <button class="faq-question">
+                                <span><i class="fas fa-coins" style="color:#f59e0b;"></i> Coinlar qanday yig'iladi va nimalarga ishlatiladi?</span>
+                                <i class="fas fa-chevron-down faq-arrow"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Platformamizdagi arabcha–o'zbekcha testlarni muvaffaqiyatli topshirganingizda, har bir to'g'ri javob uchun hisobingizga 1 tadan oltin Coin taqdim etiladi. Yig'ilgan coinlarni «Do'kon» bo'limidagi kitoblar, lug'atlar, qalamlar va boshqa qimmatli sovg'alarga almashtirishingiz mumkin!</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span><i class="fas fa-redo"></i> Testlarni necha marta topshirish mumkin?</span>
+                                <i class="fas fa-chevron-down faq-arrow"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Har bir testni halol musobaqa va adolatli natija uchun 1 marta topshirish belgilangan. Agar xatolaringizni takrorlamoqchi bo'lsangiz, «Lug'at & Kartochkalar» bo'limida barcha so'zlarni xohlagancha mashq qilishingiz mumkin.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span><i class="fas fa-shipping-fast"></i> Do'kondagi sovg'alarni qanday qilib qabul qilib olaman?</span>
+                                <i class="fas fa-chevron-down faq-arrow"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yetarli coin to'plab «Xarid qilish» tugmasini bosganingizdan so'ng, adminlarimiz buyurtmangizni ko'radi va topshirish jarayoni boshlanadi. Buyurtmangiz holatini «Xaridlarim» bo'limida kuzatib borishingiz mumkin.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span><i class="fas fa-user-plus"></i> Ro'yxatdan o'tish majburiymi?</span>
+                                <i class="fas fa-chevron-down faq-arrow"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Maqolalarni o'qish, lug'at kartochkalaridan foydalanish va saytni ko'rish barcha mehmonlar uchun ochiq. Biroq test natijalaringizni, to'plangan coinlaringizni va saralangan maqolalaringizni saqlab borish uchun ro'yxatdan o'tishingiz tavsiya etiladi (bu 1 daqiqa vaqt oladi!).</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span><i class="fas fa-pen-nib"></i> Men ham maqola yoki yangi test qo'sha olamanmi?</span>
+                                <i class="fas fa-chevron-down faq-arrow"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Albatta! Saytimizning quyidagi fikr-mulohaza bo'limi yoki admin bilan bog'lanish orqali o'z maqolangiz yoki test savollaringizni yuborishingiz mumkin. Tekshiruvdan so'ng ular saytga joylashtiriladi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ CONTACT & FEEDBACK SECTION ============ -->
+            <section id="contact" class="section">
+                <div class="container">
+                    <div class="contact-grid">
+                        <div class="contact-info-card">
+                            <div class="section-badge"><i class="fas fa-envelope-open-text"></i> Aloqa</div>
+                            <h2>Biz bilan bog'laning</h2>
+                            <p>Savollaringiz, takliflaringiz yoki hamkorlik bo'yicha fikrlaringiz bormi? Biz doimo muloqotga tayyormiz.</p>
+
+                            <div class="contact-channels">
+                                <div class="channel-item">
+                                    <div class="channel-icon"><i class="fas fa-paper-plane"></i></div>
+                                    <div>
+                                        <strong>Telegram kanal</strong>
+                                        <p><a href="https://t.me/ilmchashmasi" target="_blank" rel="noopener">@ilmchashmasi_rasmiy</a></p>
+                                    </div>
+                                </div>
+                                <div class="channel-item">
+                                    <div class="channel-icon"><i class="fas fa-envelope"></i></div>
+                                    <div>
+                                        <strong>Elektron pochta</strong>
+                                        <p>info@ilmchashmasi.uz</p>
+                                    </div>
+                                </div>
+                                <div class="channel-item">
+                                    <div class="channel-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div>
+                                        <strong>Manzil</strong>
+                                        <p>Toshkent shahri, O'zbekiston</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feedback-form-card">
+                            <h3><i class="fas fa-comment-dots" style="color:var(--primary);"></i> Fikr va Mulohaza Qoldiring</h3>
+                            <p>Platformamizni yanada mukammal qilishda sizning fikringiz biz uchun muhim!</p>
+                            <form id="feedback-form">
+                                <div class="form-group">
+                                    <label for="fb-name">Ismingiz</label>
+                                    <input type="text" id="fb-name" placeholder="Masalan: Azizbek" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Platformani baholang</label>
+                                    <div class="rating-stars" id="feedback-stars">
+                                        <span class="star" data-val="1">★</span>
+                                        <span class="star" data-val="2">★</span>
+                                        <span class="star" data-val="3">★</span>
+                                        <span class="star" data-val="4">★</span>
+                                        <span class="star active" data-val="5">★</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fb-message">Taklif yoki fikringiz</label>
+                                    <textarea id="fb-message" rows="4" placeholder="Platformada yana qanday imkoniyatlar bo'lishini xohlaysiz?.." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Yuborish</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ============ FOOTER ============ -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top-grid">
+                    <div class="footer-col footer-brand-col">
+                        <a href="#home" class="logo footer-logo">
+                            <span class="logo-icon"><i class="fas fa-book-open"></i></span>
+                            <span class="logo-text">Ilm Chashmasi</span>
+                        </a>
+                        <p class="footer-desc">
+                            Ilm va hikmatlar bulog'idan bahra oling. Dunyoqarashingizni kengaytiruvchi bepul ta'limiy platforma.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-btn" title="Telegram"><i class="fab fa-telegram"></i></a>
+                            <a href="#" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-btn" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Tezkor Havolalar</h4>
+                        <ul class="footer-nav-list">
+                            <li><a href="#home">Bosh sahifa</a></li>
+                            <li><a href="#articles">Maqolalar</a></li>
+                            <li><a href="#tests">Interaktiv Testlar</a></li>
+                            <li><a href="#flashcards">So'z kartochkalari</a></li>
+                            <li><a href="#shop">Coin Do'koni</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Foydali</h4>
+                        <ul class="footer-nav-list">
+                            <li><a href="#leaderboard">O'quvchilar Reytingi</a></li>
+                            <li><a href="#resources">Foydali Resurslar</a></li>
+                            <li><a href="#about">Biz haqimizda</a></li>
+                            <li><a href="#faq">Ko'p so'raladigan savollar</a></li>
+                            <li><a href="#contact">Bog'lanish</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Kun Hikmati Obunasi</h4>
+                        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:12px;">Yangi maqolalar va darslardan birinchilardan bo'lib xabardor bo'ling:</p>
+                        <form id="newsletter-form" class="newsletter-box">
+                            <input type="email" id="nl-email" placeholder="Elektron pochtangiz..." required>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="footer-bottom-wrap">
+                    <div class="footer-copy">
+                        &copy; 2026 <strong>Ilm Chashmasi</strong>. Barcha huquqlar himoyalangan.
+                    </div>
+                    <div class="footer-legal">
+                        <span>Fidokorona ta'lim loyihasi</span> • <span>Toshkent, O'zbekiston</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ============ AUTH MODAL (LOGIN & REGISTER TABS) ============ -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content modal-auth-card">
+                <button class="close-modal-btn" aria-label="Yopish">&times;</button>
+                <div class="auth-header">
+                    <div class="auth-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Ilm Chashmasiga Xush Kelibsiz</h3>
+                    <p>Bilim olish va natijalaringizni saqlash uchun profilingizga kiring</p>
+                </div>
+
+                <!-- Tabs: Kirish vs Ro'yxatdan o'tish -->
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" id="tab-login-btn">Kirish</button>
+                    <button class="auth-tab-btn" id="tab-register-btn">Ro'yxatdan o'tish</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form-view active">
+                    <div class="form-group">
+                        <label for="username"><i class="fas fa-user"></i> Login</label>
+                        <input type="text" id="username" placeholder="Login nomingizni kiriting" required autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fas fa-lock"></i> Parol</label>
+                        <input type="password" id="password" placeholder="Parolingizni kiriting" required autocomplete="current-password">
+                    </div>
+                    <div id="login-error" class="error-msg"></div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg"><i class="fas fa-sign-in-alt"></i> Tizimga Kirish</button>
+                    <div class="auth-switch-note">
+                        Hisobingiz yo'qmi? <a href="#" id="switch-to-register">Ro'yxatdan o'tish</a>
+                    </div>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form-view">
+                    <div class="form-group">
+                        <label for="reg-username"><i class="fas fa-user-plus"></i> Yangi Login</label>
+                        <input type="text" id="reg-username" placeholder="Foydalanuvchi nomi tanlang" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password"><i class="fas fa-lock"></i> Parol</label>
+                        <input type="password" id="reg-password" placeholder="Kamida 4 ta belgi" required autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password-confirm"><i class="fas fa-check-double"></i> Parolni tasdiqlang</label>
+                        <input type="password" id="reg-password-confirm" placeholder="Parolni qayta kiriting" required autocomplete="new-password">
+                    </div>
+                    <div id="reg-error" class="error-msg"></div>
+                    <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-user-check"></i> Yangi Hisob Ochish</button>
+                    <div class="auth-switch-note">
+                        Profilingiz bormi? <a href="#" id="switch-to-login">Kirish</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ============ FULL ARTICLE READER MODAL ============ -->
+        <div id="read-article-modal" class="modal">
+            <div class="modal-content modal-reading-card">
+                <button class="close-modal-btn" aria-label="Yopish">&times;</button>
+                <div class="reading-toolbar">
+                    <div class="toolbar-left">
+                        <span id="reading-cat-badge" class="article-badge">Kategoriya</span>
+                        <span id="reading-date-badge" class="reading-date"><i class="far fa-calendar-alt"></i> Bugun</span>
+                        <span id="reading-views-badge" class="reading-views"><i class="far fa-eye"></i> 142</span>
+                    </div>
+                    <div class="toolbar-right">
+                        <button id="reading-font-dec" class="tool-btn" title="Kichikroq matn">A-</button>
+                        <button id="reading-font-inc" class="tool-btn" title="Kattaroq matn">A+</button>
+                        <button id="reading-tts-btn" class="tool-btn" title="Maqolani audio tarzda tinglash"><i class="fas fa-volume-up"></i></button>
+                        <button id="reading-fav-btn" class="tool-btn tool-fav" title="Saralanganlarga saqlash"><i class="fas fa-heart"></i></button>
+                    </div>
+                </div>
+
+                <h1 id="reading-title" class="reading-title">Maqola Sarlavhasi</h1>
+
+                <div class="reading-image-box" id="reading-image-box">
+                    <img id="reading-image" src="" alt="Maqola rasmi">
+                </div>
+
+                <div id="reading-content-body" class="reading-body">
+                    <!-- Article text -->
+                </div>
+
+                <!-- Comments Section inside Article Modal -->
+                <div class="reading-comments-wrap">
+                    <h3><i class="fas fa-comments"></i> Fikr va Izohlar (<span id="comments-count">0</span>)</h3>
+                    
+                    <div id="comments-list" class="comments-list">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <form id="add-comment-form" class="comment-form">
+                        <div class="form-group">
+                            <label for="comment-text">Fikringizni qoldiring:</label>
+                            <textarea id="comment-text" rows="3" placeholder="Maqola bo'yicha fikr yoki mulohazangiz..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Izoh qoldirish</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ FAVORITES MODAL ============ -->
+        <div id="favorites-modal" class="modal">
+            <div class="modal-content modal-fav-card">
+                <button class="close-modal-btn" aria-label="Yopish">&times;</button>
+                <h3><i class="fas fa-heart" style="color:var(--danger);"></i> Saralangan Maqolalarim</h3>
+                <p style="color:var(--text-muted);margin-bottom:15px;">Sizga yoqqan va qayta o'qish uchun saqlab qo'yilgan maqolalar to'plami</p>
+                <div id="favorites-list" class="favorites-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ USER PROFILE MODAL ============ -->
+        <div id="profile-modal" class="modal">
+            <div class="modal-content modal-profile-card">
+                <button class="close-modal-btn" aria-label="Yopish">&times;</button>
+                <div class="profile-avatar-wrap">
+                    <div class="profile-avatar-circle">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 id="profile-modal-username">Foydalanuvchi</h3>
+                    <span id="profile-modal-role" class="user-role-badge">O'quvchi</span>
+                </div>
+
+                <div class="profile-stats-grid">
+                    <div class="p-stat-box">
+                        <div class="p-stat-val" id="profile-coins-val">🪙 0</div>
+                        <div class="p-stat-lbl">Hisobdagi Coinlar</div>
+                    </div>
+                    <div class="p-stat-box">
+                        <div class="p-stat-val" id="profile-tests-val">0</div>
+                        <div class="p-stat-lbl">Topshirilgan Testlar</div>
+                    </div>
+                    <div class="p-stat-box">
+                        <div class="p-stat-val" id="profile-favs-val">0</div>
+                        <div class="p-stat-lbl">Saralangan Maqolalar</div>
+                    </div>
+                    <div class="p-stat-box">
+                        <div class="p-stat-val" id="profile-orders-val">0</div>
+                        <div class="p-stat-lbl">Do'kon Xaridlari</div>
+                    </div>
+                </div>
+
+                <div class="profile-achievements">
+                    <h4><i class="fas fa-medal"></i> Yutuqlar va Nishonlar</h4>
+                    <div class="badge-shelf" id="profile-badge-shelf">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <button class="btn btn-danger btn-block" onclick="logout()" style="margin-top:20px;">
+                    <i class="fas fa-sign-out-alt"></i> Tizimdan chiqish
+                </button>
+            </div>
+        </div>
+
+        <!-- ============ MY ORDERS MODAL ============ -->
+        <div id="orders-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal-btn" aria-label="Yopish">&times;</button>
+                <h3><i class="fas fa-shopping-bag" style="color:var(--secondary);"></i> Mening Xaridlarim</h3>
+                <p style="color:var(--text-muted);margin-bottom:15px;">Do'kondan coinlar evaziga xarid qilgan sovg'alaringiz holati</p>
+                <div id="user-orders-list" class="user-orders-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ RESOURCE VIEWER MODAL ============ -->
+        <div id="resource-modal" class="modal">
+            <div class="modal-content modal-lg">
+                <button class="close-modal-btn" aria-label="Yopish">&times;</button>
+                <div id="resource-modal-body">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ ADMIN DASHBOARD (Initially Hidden) ============ -->
+        <div id="admin-view" class="view-hidden">
+            <header class="admin-header">
+                <div class="container admin-nav">
+                    <h2><i class="fas fa-user-shield"></i> Admin Boshqaruv Paneli</h2>
+                    <div class="admin-top-actions">
+                        <button id="admin-back-btn" class="btn btn-primary-outline"><i class="fas fa-arrow-left"></i> Saytga qaytish</button>
+                        <button id="logout-btn" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Chiqish</button>
+                    </div>
+                </div>
+            </header>
+            <div class="container admin-container">
+                <!-- Sidebar -->
+                <div class="admin-sidebar">
+                    <button id="new-article-btn" class="btn btn-success btn-block" style="margin-bottom:10px;">
+                        <i class="fas fa-plus"></i> Yangi Maqola
+                    </button>
+                    <button id="new-user-btn" class="btn btn-primary btn-block" style="margin-bottom:10px;">
+                        <i class="fas fa-user-plus"></i> Yangi Foydalanuvchi
+                    </button>
+                    <button id="new-quiz-btn" class="btn btn-quiz btn-block" style="margin-bottom:10px;">
+                        <i class="fas fa-brain"></i> Yangi Test
+                    </button>
+                    <button id="new-product-btn" class="btn btn-secondary-outline btn-block">
+                        <i class="fas fa-gift"></i> Yangi Mahsulot
+                    </button>
+                </div>
+                <!-- Content -->
+                <div class="admin-content">
+                    <h3>Mavjud Maqolalar</h3>
+                    <div id="admin-articles-list"></div>
+
+                    <h3 style="margin-top:30px;">Foydalanuvchilar</h3>
+                    <div id="admin-users-list"></div>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-language"></i> Testlar</h3>
+                    <div id="admin-quizzes-list"></div>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-store"></i> Mahsulotlar (Do'kon)</h3>
+                    <div id="admin-products-list"></div>
+
+                    <h3 style="margin-top:30px;"><i class="fas fa-shopping-cart" style="color:#f59e0b;"></i> Buyurtmalar (Xaridlar)</h3>
+                    <div id="admin-orders-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ ARTICLE EDITOR MODAL (Admin) ============ -->
+        <div id="article-modal" class="modal">
+            <div class="modal-content modal-lg">
+                <button class="close-modal-btn">&times;</button>
+                <h3 id="modal-title">Yangi Maqola</h3>
+                <form id="article-form">
+                    <input type="hidden" id="edit-id">
+                    <div class="form-group">
+                        <label for="art-title">Sarlavha</label>
+                        <input type="text" id="art-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="art-category">Kategoriya</label>
+                        <select id="art-category" class="custom-select" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);">
+                            <option value="Ilm-ma'rifat">Ilm-ma'rifat</option>
+                            <option value="Kitobxonlik">Kitobxonlik</option>
+                            <option value="Arab tili">Arab tili</option>
+                            <option value="Shaxsiy rivojlanish">Shaxsiy rivojlanish</option>
+                            <option value="Texnologiya">Texnologiya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="art-image">Rasm URL (ixtiyoriy)</label>
+                        <input type="text" id="art-image" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label for="art-content">Matn</label>
+                        <textarea id="art-content" rows="10" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ============ NEW USER MODAL (Admin) ============ -->
+        <div id="user-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal-btn">&times;</button>
+                <h3><i class="fas fa-user-plus"></i> Yangi Foydalanuvchi</h3>
+                <form id="user-form">
+                    <div class="form-group">
+                        <label for="new-username">Login</label>
+                        <input type="text" id="new-username" placeholder="Foydalanuvchi nomi" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Parol</label>
+                        <input type="password" id="new-password" placeholder="Parol" required autocomplete="new-password">
+                    </div>
+                    <div id="user-error" class="error-msg"></div>
+                    <button type="submit" class="btn btn-primary btn-block">Qo'shish</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ============ QUIZ CREATOR MODAL (Admin) ============ -->
+        <div id="quiz-modal" class="modal">
+            <div class="modal-content modal-quiz">
+                <button class="close-modal-btn">&times;</button>
+                <h3><i class="fas fa-brain"></i> Yangi Test Yaratish</h3>
+                <form id="quiz-form">
+                    <div class="form-group">
+                        <label for="quiz-title">Test sarlavhasi</label>
+                        <input type="text" id="quiz-title" placeholder="Masalan: 4-dars so'zlari" required>
+                    </div>
+                    <div class="word-rows-header">
+                        <span>Arabcha</span>
+                        <span>To'g'ri tarjima</span>
+                        <span>Noto'g'ri 1</span>
+                        <span>Noto'g'ri 2</span>
+                        <span>Noto'g'ri 3</span>
+                        <span></span>
+                    </div>
+                    <div id="word-rows"></div>
+                    <button type="button" id="add-word-row" class="btn btn-primary-outline" style="margin-top:10px;width:100%;">
+                        <i class="fas fa-plus"></i> So'z qo'shish
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-block" style="margin-top:16px;">
+                        <i class="fas fa-save"></i> Saqlash
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ============ TAKE QUIZ MODAL ============ -->
+        <div id="take-quiz-modal" class="modal">
+            <div class="modal-content modal-quiz-take">
+                <button class="close-modal-btn">&times;</button>
+                <div id="quiz-body">
+                    <!-- Question content rendered by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ COIN MODAL (Admin adds coins to user) ============ -->
+        <div id="coin-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal-btn">&times;</button>
+                <h3><i class="fas fa-coins" style="color:#f59e0b;"></i> Coin qo'shish</h3>
+                <p style="margin-bottom:16px;">Foydalanuvchi: <strong id="coin-target-name"></strong></p>
+                <p style="margin-bottom:16px;color:var(--text-muted);">Hozirgi balans: <strong id="coin-current"></strong> 🪙</p>
+                <input type="hidden" id="coin-target-index">
+                <form id="coin-form">
+                    <div class="form-group">
+                        <label for="coin-amount">Qo'shish miqdori</label>
+                        <input type="number" id="coin-amount" placeholder="Masalan: 10" min="1" required>
+                    </div>
+                    <div id="coin-error" class="error-msg"></div>
+                    <button type="submit" class="btn btn-primary btn-block">Qo'shish</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ============ PRODUCT MODAL (Admin adds shop item) ============ -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-modal-btn">&times;</button>
+                <h3><i class="fas fa-gift" style="color:var(--secondary);"></i> Yangi Mahsulot</h3>
+                <form id="product-form">
+                    <div class="form-group">
+                        <label for="prod-title">Nomi</label>
+                        <input type="text" id="prod-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-image">Rasm URL</label>
+                        <input type="text" id="prod-image" placeholder="https://example.com/gift.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="prod-price">Narxi (Coin)</label>
+                        <input type="number" id="prod-price" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Saqlash</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
