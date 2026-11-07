@@ -12,6 +12,66 @@ const AppContext = createContext();
 
 export const useApp = () => useContext(AppContext);
 
+export const normalizeArticle = (art) => {
+  if (!art) return null;
+  let categoryName = "Ilm-ma'rifat";
+  if (art.category) {
+    if (typeof art.category === 'object') {
+      categoryName = art.category.name || art.category.title || "Ilm-ma'rifat";
+    } else {
+      categoryName = String(art.category);
+    }
+  }
+  return {
+    ...art,
+    id: art.id,
+    title: art.title || '',
+    category: categoryName,
+    content: art.content || '',
+    image: art.image || 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=1073',
+    views: art.views !== undefined ? art.views : (art.views_count || 100),
+    readTime: art.readTime || '3 daqiqa',
+    date: art.date || (art.createdAt ? String(art.createdAt).split('T')[0] : '2026-10-30'),
+  };
+};
+
+export const normalizeQuiz = (q) => {
+  if (!q) return null;
+  return {
+    ...q,
+    id: q.id,
+    title: q.title || '',
+    level: q.level || 'easy',
+    words: Array.isArray(q.words) ? q.words : [],
+  };
+};
+
+export const normalizeProduct = (p) => {
+  if (!p) return null;
+  return {
+    ...p,
+    id: p.id,
+    title: p.title || '',
+    category: p.category || 'kitob',
+    description: p.description || '',
+    image: p.image || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=400',
+    price: p.price || 15,
+    stock: p.stock !== undefined ? p.stock : 10,
+  };
+};
+
+export const normalizeUser = (u) => {
+  if (!u) return null;
+  return {
+    ...u,
+    username: u.username || 'user',
+    coins: u.coins !== undefined ? u.coins : 10,
+    testsDone: u.testsDone !== undefined ? u.testsDone : 0,
+    quizAttempts: u.quizAttempts || {},
+    purchased: Array.isArray(u.purchased) ? u.purchased : [],
+  };
+};
+
 export const AppProvider = ({ children }) => {
   // Theme state
   const [theme, setTheme] = useState(() => {
@@ -30,36 +90,40 @@ export const AppProvider = ({ children }) => {
   const [articles, setArticles] = useState(() => {
     try {
       const stored = localStorage.getItem('ilm_articles');
-      return stored ? JSON.parse(stored) : DEFAULT_ARTICLES;
+      const list = stored ? JSON.parse(stored) : DEFAULT_ARTICLES;
+      return Array.isArray(list) ? list.map(normalizeArticle) : DEFAULT_ARTICLES.map(normalizeArticle);
     } catch {
-      return DEFAULT_ARTICLES;
+      return DEFAULT_ARTICLES.map(normalizeArticle);
     }
   });
 
   const [users, setUsers] = useState(() => {
     try {
       const stored = localStorage.getItem('ilm_users');
-      return stored ? JSON.parse(stored) : DEFAULT_USERS;
+      const list = stored ? JSON.parse(stored) : DEFAULT_USERS;
+      return Array.isArray(list) ? list.map(normalizeUser) : DEFAULT_USERS.map(normalizeUser);
     } catch {
-      return DEFAULT_USERS;
+      return DEFAULT_USERS.map(normalizeUser);
     }
   });
 
   const [quizzes, setQuizzes] = useState(() => {
     try {
       const stored = localStorage.getItem('ilm_quizzes');
-      return stored ? JSON.parse(stored) : DEFAULT_QUIZZES;
+      const list = stored ? JSON.parse(stored) : DEFAULT_QUIZZES;
+      return Array.isArray(list) ? list.map(normalizeQuiz) : DEFAULT_QUIZZES.map(normalizeQuiz);
     } catch {
-      return DEFAULT_QUIZZES;
+      return DEFAULT_QUIZZES.map(normalizeQuiz);
     }
   });
 
   const [products, setProducts] = useState(() => {
     try {
       const stored = localStorage.getItem('ilm_products');
-      return stored ? JSON.parse(stored) : DEFAULT_PRODUCTS;
+      const list = stored ? JSON.parse(stored) : DEFAULT_PRODUCTS;
+      return Array.isArray(list) ? list.map(normalizeProduct) : DEFAULT_PRODUCTS.map(normalizeProduct);
     } catch {
-      return DEFAULT_PRODUCTS;
+      return DEFAULT_PRODUCTS.map(normalizeProduct);
     }
   });
 
@@ -178,7 +242,7 @@ export const AppProvider = ({ children }) => {
           if (artRes.ok) {
             const artData = await artRes.json();
             if (Array.isArray(artData) && artData.length > 0) {
-              setArticles(artData);
+              setArticles(artData.map(normalizeArticle));
             }
           }
           // Fetch quizzes
@@ -186,7 +250,7 @@ export const AppProvider = ({ children }) => {
           if (quizRes.ok) {
             const quizData = await quizRes.json();
             if (Array.isArray(quizData) && quizData.length > 0) {
-              setQuizzes(quizData);
+              setQuizzes(quizData.map(normalizeQuiz));
             }
           }
           // Fetch products
@@ -194,7 +258,7 @@ export const AppProvider = ({ children }) => {
           if (prodRes.ok) {
             const prodData = await prodRes.json();
             if (Array.isArray(prodData) && prodData.length > 0) {
-              setProducts(prodData);
+              setProducts(prodData.map(normalizeProduct));
             }
           }
         }

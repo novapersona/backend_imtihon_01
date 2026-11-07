@@ -1,0 +1,23 @@
+{
+  "name": "ilm-chashmasi-monorepo",
+  "version": "1.0.0",
+  "description": "Ilm Chashmasi - React & Express PostgreSQL Fullstack Platformasi",
+  "scripts": {
+    "dev": "node start-dev.js",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start": "npm --prefix backend start",
+    "build": "npm --prefix frontend run build",
+    "seed": "npm --prefix backend run seed",
+    "install:all": "npm --prefix backend install && npm --prefix frontend install"
+  },
+  "keywords": [
+    "ilm-chashmasi",
+    "react",
+    "express",
+    "postgresql",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "ISC"
+}

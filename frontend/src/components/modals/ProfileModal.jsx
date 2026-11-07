@@ -2,63 +2,88 @@ import React from 'react';
 import { useApp } from '../../context/AppContext';
 
 export const ProfileModal = () => {
-  const { activeModal, setActiveModal, currentUser, getCurrentUserRecord, logout, playSound } = useApp();
+  const {
+    activeModal,
+    setActiveModal,
+    currentUser,
+    getCurrentUserRecord,
+    favorites,
+    orders,
+    logout,
+    playSound,
+  } = useApp();
 
   if (activeModal !== 'profile' || !currentUser) return null;
 
   const userRec = getCurrentUserRecord();
+  const userOrders =
+    currentUser?.role === 'admin'
+      ? orders
+      : orders.filter((o) => o.buyer === currentUser?.username);
 
   const handleClose = () => {
     playSound('click');
     setActiveModal(null);
   };
 
-  const handleOpenOrders = () => {
-    playSound('click');
-    setActiveModal('orders');
-  };
-
   return (
-    <div className="modal active" style={{ display: 'flex' }} onClick={handleClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-modal-btn" onClick={handleClose}>
+    <div
+      id="profile-modal"
+      className="modal"
+      style={{ display: 'flex' }}
+      onClick={handleClose}
+    >
+      <div
+        className="modal-content modal-profile-card"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="close-modal-btn" aria-label="Yopish" onClick={handleClose}>
           &times;
         </button>
-
-        <div className="profile-header-wrap">
-          <div className="avatar-circle-lg">
-            <span>{currentUser.username.charAt(0).toUpperCase()}</span>
+        <div className="profile-avatar-wrap">
+          <div className="profile-avatar-circle">
+            <i className="fas fa-user-graduate"></i>
           </div>
-          <h3>{currentUser.username}</h3>
-          <span className="user-role-badge">
-            {currentUser.role === 'admin' ? 'Bosh Ma\'mur (Admin)' : 'O\'quvchi'}
+          <h3 id="profile-modal-username">{currentUser.username}</h3>
+          <span id="profile-modal-role" className="user-role-badge">
+            {currentUser.role === 'admin' ? "Bosh Ma'mur (Admin)" : "O'quvchi"}
           </span>
         </div>
 
         <div className="profile-stats-grid">
-          <div className="profile-stat-box">
-            <div className="profile-stat-val" style={{ color: 'var(--secondary)' }}>
-              <i className="fas fa-coins"></i> {userRec?.coins || 0}
+          <div className="p-stat-box">
+            <div className="p-stat-val" id="profile-coins-val">
+              🪙 {userRec?.coins || 0}
             </div>
-            <div className="profile-stat-lbl">Hisobdagi Tangalar</div>
+            <div className="p-stat-lbl">Hisobdagi Coinlar</div>
           </div>
-
-          <div className="profile-stat-box">
-            <div className="profile-stat-val" style={{ color: 'var(--primary)' }}>
-              <i className="fas fa-check-circle"></i> {userRec?.testsDone || 0}
+          <div className="p-stat-box">
+            <div className="p-stat-val" id="profile-tests-val">
+              {userRec?.testsDone || 0}
             </div>
-            <div className="profile-stat-lbl">Yechilgan Testlar</div>
+            <div className="p-stat-lbl">Topshirilgan Testlar</div>
+          </div>
+          <div className="p-stat-box">
+            <div className="p-stat-val" id="profile-favs-val">
+              {favorites.length}
+            </div>
+            <div className="p-stat-lbl">Saralangan Maqolalar</div>
+          </div>
+          <div className="p-stat-box">
+            <div className="p-stat-val" id="profile-orders-val">
+              {userOrders.length}
+            </div>
+            <div className="p-stat-lbl">Do'kon Xaridlari</div>
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
-          <button className="btn btn-secondary-outline btn-block" onClick={handleOpenOrders}>
-            <i className="fas fa-shopping-bag"></i> Buyurtmalar va Xaridlar
-          </button>
-          <button className="btn btn-danger-outline btn-block" onClick={logout}>
-            <i className="fas fa-sign-out-alt"></i> Tizimdan chiqish
-          </button>
-        </div>
+        <button
+          className="btn btn-danger btn-block"
+          onClick={logout}
+          style={{ marginTop: '20px' }}
+        >
+          <i className="fas fa-sign-out-alt"></i> Tizimdan chiqish
+        </button>
       </div>
     </div>
   );

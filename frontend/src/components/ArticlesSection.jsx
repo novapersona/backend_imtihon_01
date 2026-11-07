@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 
+const getCategoryString = (cat) => {
+  if (!cat) return "Ilm-ma'rifat";
+  if (typeof cat === 'object') return cat.name || cat.title || "Ilm-ma'rifat";
+  return String(cat);
+};
+
 export const ArticlesSection = () => {
   const { articles, favorites, toggleFavorite, setActiveModal, setModalData, playSound } = useApp();
 
@@ -19,13 +25,14 @@ export const ArticlesSection = () => {
 
   const filteredArticles = articles
     .filter((art) => {
-      if (category !== 'all' && art.category !== category) return false;
+      const catStr = getCategoryString(art.category);
+      if (category !== 'all' && catStr !== category) return false;
       if (searchTerm) {
         const query = searchTerm.toLowerCase();
         return (
-          art.title?.toLowerCase().includes(query) ||
-          art.content?.toLowerCase().includes(query) ||
-          art.category?.toLowerCase().includes(query)
+          (art.title || '').toLowerCase().includes(query) ||
+          (art.content || '').toLowerCase().includes(query) ||
+          catStr.toLowerCase().includes(query)
         );
       }
       return true;
@@ -145,7 +152,7 @@ export const ArticlesSection = () => {
                   </div>
                   <div className="article-info">
                     <div className="article-meta-row">
-                      <span className="article-badge">{art.category || "Ilm-ma'rifat"}</span>
+                      <span className="article-badge">{getCategoryString(art.category)}</span>
                       <span className="article-read-time">
                         <i className="far fa-clock"></i> {art.readTime || '3 daqiqa'}
                       </span>

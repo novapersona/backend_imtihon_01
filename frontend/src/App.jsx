@@ -4,7 +4,7 @@ import { Toast } from './components/Toast';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Stats } from './components/Stats';
-import { Features } from './components/Features';
+import { DailyWisdomBanner } from './components/DailyWisdomBanner';
 import { ArticlesSection } from './components/ArticlesSection';
 import { FlashcardsSection } from './components/FlashcardsSection';
 import { TestsSection } from './components/TestsSection';
@@ -34,10 +34,10 @@ export default function App() {
         <Toast />
         <Navbar />
 
-        <main>
+        <main id="main-content">
           <Hero />
           <Stats />
-          <Features />
+          <DailyWisdomBanner />
           <ArticlesSection />
           <FlashcardsSection />
           <TestsSection />

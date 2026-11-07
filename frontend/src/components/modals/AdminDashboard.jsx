@@ -269,7 +269,7 @@ export const AdminDashboard = () => {
                   {articles.map((art) => (
                     <tr key={art.id}>
                       <td><strong>{art.title}</strong></td>
-                      <td>{art.category}</td>
+                      <td>{typeof art.category === 'object' && art.category !== null ? art.category.name : (art.category || "Ilm-ma'rifat")}</td>
                       <td>{art.views || 0}</td>
                       <td style={{ textAlign: 'right' }}>
                         <button

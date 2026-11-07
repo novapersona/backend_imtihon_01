@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: "*" }));
 
 // Serve frontend static files (prioritizing React app)
-const reactDist = path.join(__dirname, "frontend", "dist");
+const reactDist = path.join(__dirname, "..", "frontend", "dist");
 if (fs.existsSync(reactDist)) {
     app.use(express.static(reactDist));
 } else {

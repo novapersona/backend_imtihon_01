@@ -7,9 +7,9 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "seed": "node seed.js",
-    "client:dev": "npm --prefix frontend run dev",
-    "client:build": "npm --prefix frontend run build",
-    "build": "npm --prefix frontend run build"
+    "client:dev": "npm --prefix ../frontend run dev",
+    "client:build": "npm --prefix ../frontend run build",
+    "build": "npm --prefix ../frontend run build"
   },
   "keywords": [
     "ilm-chashmasi",

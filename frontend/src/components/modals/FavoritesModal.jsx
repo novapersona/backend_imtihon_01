@@ -51,7 +51,7 @@ export const FavoritesModal = () => {
                 <div>
                   <h4 style={{ margin: '0 0 4px', fontSize: '1rem' }}>{art.title}</h4>
                   <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                    <i className="fas fa-folder"></i> {art.category} &bull; <i className="fas fa-clock"></i>{' '}
+                    <i className="fas fa-folder"></i> {typeof art.category === 'object' && art.category !== null ? art.category.name : (art.category || "Ilm-ma'rifat")} &bull; <i className="fas fa-clock"></i>{' '}
                     {art.readTime || '3 daqiqa'}
                   </span>
                 </div>
